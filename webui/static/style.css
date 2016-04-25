@@ -1,0 +1,39 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{ 
+    font-family: sans-serif; 
+    background: #eee; 
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+div{
+    color: #FFF;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.menu { 
+    height: 100%; 
+    width: 20%;
+    background: #708090; 
+    border-right: 1px solid #000; 
+    margin-top: 0; 
+ }
+ .container-menu{
+    position: relative;
+    top: 40%;
+}
+ .menu div{
+     margin-left: 15%;
+     margin-bottom: 2%;
+ }
+ .context{
+     height: 100%;
+     width: 80%;
+ }
