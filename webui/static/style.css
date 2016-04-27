@@ -9,9 +9,7 @@ body{
     padding: 0;
     height: 100%;
 }
-div{
-    color: #FFF;
-}
+
 
 #main{
     height: 100%;
@@ -21,19 +19,38 @@ div{
 .menu { 
     height: 100%; 
     width: 20%;
-    background: #708090; 
-    border-right: 1px solid #000; 
+    background: #132734; 
+    border-right: 2px solid #1f130b; 
     margin-top: 0; 
- }
- .container-menu{
+    float: left;
+}
+.menu a{
+    color: #d4cfcc;
+    text-decoration: none;
+    font-size: 100%;
+}
+.menu a:hover{
+    font-size: 140%;
+}
+
+a.active_link{
+    font-size: 140%;
+    text-decoration: underline;
+}
+.container-menu{
     position: relative;
     top: 40%;
 }
- .menu div{
-     margin-left: 15%;
-     margin-bottom: 2%;
- }
- .context{
-     height: 100%;
-     width: 80%;
- }
+.menu div{
+    margin-left: 15%;
+    margin-bottom: 2%;
+}
+.context{
+    background-color: #d4cfcc;
+    float: right;
+    height: 100%;
+    width: 79%;
+}
+#main-context{
+    margin-left: 5%;
+}

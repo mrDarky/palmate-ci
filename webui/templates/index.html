@@ -1,14 +1,29 @@
 <!doctype html>
+<html>
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-
+    {% endblock %}
+</head>
+<body>
     <div id="main">
         <div class="menu">
             <div class="container-menu">
-                <div><a>pages with</a></div> 
-                <div><a>builds</a></div> 
-                <div><a>leaws</a></div>
+                <div><a href="{{ url_for('projects') }}" {% block active_link1 %}{% endblock %}>Projects list</a></div> 
+                <div><a href="{{ url_for('leaves') }}" {% block active_link2 %}{% endblock %}>Leaves list</a></div> 
+                <div><a href="{{ url_for('projects') }}" {% block active_link3 %}{% endblock %}>Project page</a></div>
             </div>
         </div>
-        <div class="context"></div>
+      
+        <div class="context">
+            <div id="main-context">
+                {% block context %}
+                
+                {% endblock %}
+            </div>
+        </div>
+        
     </div>
-    {% block body %}{% endblock %}
+</body>    
+</html>
