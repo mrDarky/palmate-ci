@@ -57,7 +57,7 @@ class ExecutorApp:
         for leaf in Config.getLeaves():
             Leaves.storage.addLeaf(LeafConfig(leaf))
 
-        Builds.storage = Builds.BuildDAO(self.mongoClient['builds-db'])
+        Builds.storage = Builds.BuildDAO(self.mongoClient['palmate-executor'])
 
     def connectDb(self):
         # TODO(yourash): implement colored mitli-level logging

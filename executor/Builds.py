@@ -17,22 +17,26 @@ class BuildDTO:
 
 class BuildDAO:
     # TODO: implement BuildDAO with sqlite backend
-    def __init__(self, mongoBuildsDb):
+    def __init__(self, mongoDb):
         self.__builds = dict()
         self.__currentId = 1
-        self.__db = mongoBuildsDb
+        self.__mongoCollection = mongoDb['builds']
 
     def addBuild(self, build):
         if self.checkBuild(build):
-            self.__builds[self.__currentId] = build
+            # TODO: add MongoDB autoincrementing field
+            build['buildId'] = self.__currentId
+            self.__currentId+=1
+            self.__mongoCollection.insert_one(build)
 
     def getBuildIds(self):
-        return self.__builds.keys()
+        return self.__mongoCollection.distinct("buildId")
 
     def getBuild(self, buildId):
-        return self.__builds.get(buildId)
+        return list(self.__mongoCollection.find({'buildId':buildId}))
 
     def checkBuild(self, build):
+        # TODO
         return True
 
 storage = None
