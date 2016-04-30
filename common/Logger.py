@@ -3,15 +3,19 @@ import colorlog
 
 class Logger:
     def __init__(self, fname, level='INFO'):
-        if not fname:
-            self.fname = open(fname, 'w')
-        else:
-            self.fname = None
+        if fname:
+            try:
+                self.fname = open(fname, 'w')
+            except IOError:
+                print('[ERROR] Failed to open %s for writing'%fname)
+                self.fname = None
+            else:
+                self.fname = None
 
         self.logger = logging.getLogger()
         self.handler = colorlog.StreamHandler()
         self.handler.setFormatter(colorlog.ColoredFormatter(
-                '%(log_color)s%(levelname)s:%(name)s:%(message)s%(reset)s',
+                '%(log_color)s%(asctime)s %(levelname)s:%(name)s:%(message)s%(reset)s',
                 log_colors={
                     'INFO': 'green',
                     'WARNING': 'yellow',
