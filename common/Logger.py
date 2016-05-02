@@ -2,17 +2,17 @@ import logging
 import colorlog
 
 class Logger:
-    def __init__(self, fname, level='INFO'):
+    def __init__(self, name='', fname='', level='INFO'):
         if fname:
             try:
-                self.fname = open(fname, 'w')
+                self.fout = open(fname, 'w')
             except IOError:
                 print('[ERROR] Failed to open %s for writing'%fname)
-                self.fname = None
-            else:
-                self.fname = None
+                self.fout = None
+        else:
+            self.fout = None
 
-        self.logger = logging.getLogger()
+        self.logger = logging.getLogger(name)
         self.handler = colorlog.StreamHandler()
         self.handler.setFormatter(colorlog.ColoredFormatter(
                 '%(log_color)s%(asctime)s %(levelname)s:%(name)s:%(message)s%(reset)s',
@@ -34,16 +34,16 @@ class Logger:
 
     def info(self, message):
         self.logger.info(message)
-        if self.fname is not None:
-            self.fname.println('[INFO] %s' % message)
+        if self.fout is not None:
+            self.fout.println('[INFO] %s' % message)
 
     def warn(self, message):
         self.logger.warning(message)
-        if self.fname is not None:
-            self.fname.println('[WARNING] %s' % message)
+        if self.fout is not None:
+            self.fout.println('[WARNING] %s' % message)
 
     def error(self, message):
         self.logger.error(message)
-        if self.fname is not None:
-            self.fname.println('[ERROR] %s' % message)
+        if self.fout is not None:
+            self.fout.println('[ERROR] %s' % message)
 

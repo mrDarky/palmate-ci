@@ -18,7 +18,7 @@ def logException(sender, exception, **extra):
 
 class ExecutorApp:
     def __init__(self, host, port):
-        self.logger = Logger.Logger('/var/palmate-executor.log')
+        self.logger = Logger.Logger('executor')
         self.loadConfigs()
         self.host = host
         self.port = port
@@ -29,6 +29,7 @@ class ExecutorApp:
         self.api = Api(self.service)
 
         self.api.add_resource(Leaves.LeafIndex, '/leaves/')
+        self.api.add_resource(Leaves.LeafRegister, '/leaves/register')
         self.api.add_resource(Leaves.LeafResource, '/leaves/<int:leafId>')
 
         self.api.add_resource(Projects.ProjectIndex, '/projects/')
