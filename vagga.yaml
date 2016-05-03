@@ -28,5 +28,5 @@ commands:
                 tags: [service]
                 run: |
                     mkdir -p /tmp/palmate
-                    /work/deploy-executor.sh /tmp/palmate
+                    /work/deploy-executor.sh .
 

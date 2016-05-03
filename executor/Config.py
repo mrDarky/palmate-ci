@@ -27,7 +27,7 @@ def getProjects():
     projectPath = getConfigDir()+'/projects/'
     return [projectPath+f for f in os.listdir(projectPath)
             if os.path.isfile(os.path.join(projectPath, f)) and
-            f.endswith(configExtension)]
+            f.endswith(__configExtension)]
 
 def getLeaves():
     leafPath = getConfigDir()+'/leaves/'
