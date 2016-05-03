@@ -1,0 +1,20 @@
+.container {
+  width: $breakpoint-mobile-portrait - $gutter * 2;
+  margin: 0 auto;
+
+  @media screen and (min-width: $breakpoint-mobile-landscape) {
+    width: $breakpoint-mobile-landscape - $gutter * 2;
+  }
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    width: $breakpoint-tablet - $gutter * 2;
+  }
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    width: $breakpoint-desktop - $gutter * 2;
+  }
+
+  @media screen and (min-width: $breakpoint-desktop-hd) {
+    width: $breakpoint-desktop-hd - $gutter * 2;
+  }
+}

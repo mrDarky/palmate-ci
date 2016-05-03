@@ -12,7 +12,7 @@ import ProjectsView from './views/ProjectsView';
 import ProjectView from './views/ProjectView';
 
 export default (
-  <Router hisory={hashHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={BaseView}>
       <IndexRoute component={HomeView} />
       <Route path="/projects" component={ProjectsView} />

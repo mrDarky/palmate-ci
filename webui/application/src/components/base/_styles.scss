@@ -1,2 +1,8 @@
 @import "reset";
 @import "typography";
+@import "variables";
+@import "container";
+
+body {
+  background-color: $bg-color;
+}
