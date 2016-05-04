@@ -5,19 +5,14 @@ import Header from '../components/header';
 class BaseView extends React.Component {
   getActiveTab() {
     let activeTab;
-    switch (this.props.location.pathname) {
-      case '/projects':
-        activeTab = 1;
-        break;
-      case '/builds':
-        activeTab = 2;
-        break;
-      case '/leaves':
-        activeTab = 3;
-        break;
-      default:
-        activeTab = 0;
-        break;
+    if (this.props.location.pathname.indexOf('/projects') !== -1) {
+      activeTab = 1;
+    } else if (this.props.location.pathname.indexOf('/builds') !== -1) {
+      activeTab = 2;
+    } else if (this.props.location.pathname.indexOf('/leaves') !== -1) {
+      activeTab = 3;
+    } else {
+      activeTab = 0;
     }
     return activeTab;
   }

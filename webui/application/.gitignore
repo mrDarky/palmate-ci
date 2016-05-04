@@ -1,2 +1,5 @@
+.editorconfig
+.csscomb.json
+
 *.log
 /node_modules
