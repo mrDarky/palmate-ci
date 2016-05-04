@@ -1,0 +1,13 @@
+@import "reset";
+@import "typography";
+@import "variables";
+@import "mixins";
+@import "grid";
+
+body {
+  background-color: $bg-color;
+}
+
+.clear {
+  @include clear();
+}
