@@ -5,6 +5,10 @@ export default {
   loadProjects: () => Dispatcher.dispatch({
     action: Constants.LOAD_PROJECTS
   }),
+  loadProjectInfo: (id) => Dispatcher.dispatch({
+    action: Constants.LOAD_PROJECT_INFO,
+    projectId: id
+  }),
   emitChange: () => Dispatcher.dispatch({
     action: Constants.EMIT_CHANGE_PROJECTS
   })

@@ -10,7 +10,7 @@
   .col-#{$i} {
     width: $breakpoint-mobile-portrait - 2 * $gutter;
     float: left;
-    margin: 0 auto;
+    margin: 0 $gutter;
 
     @media screen and (min-width: $breakpoint-mobile-landscape) {
       width: $breakpoint-mobile-landscape - 2 * $gutter;
