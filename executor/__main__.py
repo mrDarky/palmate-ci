@@ -1,5 +1,6 @@
 import sys
 from flask import Flask, got_request_exception
+from flask.ext.cors import CORS
 from flask_restful import Api
 from pymongo import MongoClient
 
@@ -25,6 +26,7 @@ class ExecutorApp:
 
         self.service = Flask('Executor')
         self.service.config['BUNDLE_ERRORS'] = True
+        CORS(self.service)
         got_request_exception.connect(logException, self.service)
         self.api = Api(self.service)
 

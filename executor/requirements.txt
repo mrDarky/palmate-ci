@@ -4,4 +4,4 @@ pyyaml
 flask_restful
 blinker
 pymongo
-
+flask-cors
