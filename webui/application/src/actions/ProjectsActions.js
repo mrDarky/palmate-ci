@@ -9,6 +9,9 @@ export default {
     action: Constants.LOAD_PROJECT_INFO,
     projectId: id
   }),
+  resetProjectId: () => Dispatcher.dispatch({
+    action: Constants.RESET_PROJECT_ID
+  }),
   emitChange: () => Dispatcher.dispatch({
     action: Constants.EMIT_CHANGE_PROJECTS
   })

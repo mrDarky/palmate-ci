@@ -1,9 +1,5 @@
 .project-list {
-  margin: $gutter 0;
-
-  border-radius: 4px;
-  background-color: #fff;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  margin: $gutter * 2 0;
 
   &__item {
     display: block;
@@ -12,16 +8,23 @@
     width: 100%;
     padding: $gutter;
 
+    transition: background-color 0.25s;
     text-decoration: none;
 
     color: $base-color;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid #f0f0f0;
-    }
+    border-radius: 4px;
 
     &:hover {
       background-color: #e3f2fd;
+    }
+
+    &--active {
+      color: #fff;
+      background-color: $base-color;
+
+      &:hover {
+        background-color: $base-color;
+      }
     }
   }
 }

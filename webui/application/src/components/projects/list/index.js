@@ -10,6 +10,7 @@ class ProjectList extends React.Component {
     this.projectsStoreListener = this.projectsStoreListener.bind(this);
     this.state = {
       projects: undefined,
+      activeId: undefined,
       projectsStoreListener: ProjectsStore.addListener(this.projectsStoreListener)
     };
   }
@@ -19,11 +20,20 @@ class ProjectList extends React.Component {
   }
 
   componentWillUnmount() {
+    ProjectsActions.resetProjectId();
     this.state.projectsStoreListener.remove();
   }
 
   projectsStoreListener() {
-    this.setState({ projects: ProjectsStore.projects });
+    this.setState({ projects: ProjectsStore.projects, activeId: ProjectsStore.projectId });
+  }
+
+  renderLink(path, key, name, active) {
+    let className = 'project-list__item';
+    if (active) {
+      className = `${className} project-list__item--active`;
+    }
+    return <Link to={path} key={key} className={className}>{name}</Link>;
   }
 
   render() {
@@ -34,7 +44,8 @@ class ProjectList extends React.Component {
           {this.state.projects.map((item, index) => {
             const keys = Object.keys(item);
             const path = `/projects/${item[keys[0]]}`;
-            return <Link to={path} key={index} className="project-list__item">{keys[0]}</Link>;
+            const active = item[keys[0]] === this.state.activeId;
+            return this.renderLink(path, index, keys[0], active);
           })}
         </div>
       );
@@ -48,5 +59,9 @@ class ProjectList extends React.Component {
     return template;
   }
 }
+
+ProjectList.propTypes = {
+  activeId: React.PropTypes.number
+};
 
 export default ProjectList;
