@@ -1,20 +1,24 @@
 .container {
-  width: $breakpoint-mobile-portrait - $gutter * 2;
+  width: $breakpoint-mobile-portrait;
   margin: 0 auto;
 
   @media screen and (min-width: $breakpoint-mobile-landscape) {
-    width: $breakpoint-mobile-landscape - $gutter * 2;
+    width: $breakpoint-mobile-landscape;
   }
 
   @media screen and (min-width: $breakpoint-tablet) {
-    width: $breakpoint-tablet - $gutter * 2;
+    width: $breakpoint-tablet;
   }
 
   @media screen and (min-width: $breakpoint-desktop) {
-    width: $breakpoint-desktop - $gutter * 2;
+    width: $breakpoint-desktop;
   }
 
   @media screen and (min-width: $breakpoint-desktop-hd) {
-    width: $breakpoint-desktop-hd - $gutter * 2;
+    width: $breakpoint-desktop-hd;
   }
 }
+
+@include column(1);
+@include column(2);
+@include column(3);

@@ -8,8 +8,10 @@ class Header extends React.Component {
     const template = (
       <header className="header">
         <div className="container">
-          <Link to="/" className="header__logo">palmate-ci</Link>
-          <Navigation activeTab={this.props.activeTab} />
+          <div className="col-3">
+            <Link to="/" className="header__logo">palmate-ci</Link>
+            <Navigation activeTab={this.props.activeTab} />
+          </div>
         </div>
       </header>
     );

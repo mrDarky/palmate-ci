@@ -1,0 +1,31 @@
+@mixin clear() {
+  &:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+@mixin column($i) {
+  .col-#{$i} {
+    width: $breakpoint-mobile-portrait - 2 * $gutter;
+    float: left;
+    margin: 0 auto;
+
+    @media screen and (min-width: $breakpoint-mobile-landscape) {
+      width: $breakpoint-mobile-landscape - 2 * $gutter;
+    }
+
+    @media screen and (min-width: $breakpoint-tablet) {
+      width: $breakpoint-tablet - 2 * $gutter;
+    }
+
+    @media screen and (min-width: $breakpoint-desktop) {
+      width: $i * $breakpoint-desktop / $columns - 2 * $gutter;
+    }
+
+    @media screen and (min-width: $breakpoint-desktop-hd) {
+      width: $i * $breakpoint-desktop-hd / $columns - 2 * $gutter;
+    }
+  }
+}
