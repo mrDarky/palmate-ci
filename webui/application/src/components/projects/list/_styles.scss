@@ -1,0 +1,25 @@
+.project-list {
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+
+  &__item {
+    display: block;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: $gutter;
+
+    text-decoration: none;
+
+    color: $base-color;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    &:hover {
+      background-color: #e3f2fd;
+    }
+  }
+}

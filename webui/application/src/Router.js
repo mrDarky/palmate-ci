@@ -15,8 +15,9 @@ export default (
   <Router history={hashHistory}>
     <Route path="/" component={BaseView}>
       <IndexRoute component={HomeView} />
-      <Route path="/projects" component={ProjectsView} />
-      <Route path="/projects/:id" component={ProjectView} />
+      <Route path="/projects" component={ProjectsView}>
+        <Route path="/projects/:id" component={ProjectView} />
+      </Route>
       <Route path="/builds" component={BuildsView} />
       <Route path="/builds/:id" component={BuildView} />
       <Route path="/leaves" component={LeavesView} />
