@@ -1,0 +1,23 @@
+@import "navigation/styles";
+$header-height: 65px;
+
+.header {
+  width: 100%;
+  height: $header-height;
+
+  background-color: #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+
+  line-height: $header-height;
+
+  &__logo {
+    float: left;
+
+    text-decoration: none;
+
+    color: $base-color;
+
+    font-size: 18px;
+    font-weight: 700;
+  }
+}

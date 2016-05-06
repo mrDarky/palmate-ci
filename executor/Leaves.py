@@ -1,5 +1,9 @@
 from common.Leaf import LeafConfig
-from flask_restful import Resource
+import common.Logger as Logger
+from flask_restful import Resource, reqparse
+from flask import request
+import urllib.request
+import json
 
 class LeafStorage:
     """ Stores list of leaves and their configuration.
@@ -12,6 +16,7 @@ class LeafStorage:
         """
         self.__leaves = dict()
         self.__currentId = 1
+        self.__logger = Logger.Logger('LeafStorage')
         for leaf in leaves:
             self.addLeaf(leaf)
 
@@ -24,13 +29,12 @@ class LeafStorage:
         """
         registeredLeaf = self.registerLeaf(leaf)
         if registeredLeaf == None:
-            print("Faile dot register leaf: {}" % leaf)
-            return False
+            self.__logger.error("Failed to register leaf: {}" % leaf)
+            raise
         else:
             self.__leaves[self.__currentId] = registeredLeaf
             self.__currentId += 1
-            print(self.__leaves[self.__currentId-1].serialize())
-        return True
+            self.__logger.info('Registered new Leaf %r' % registeredLeaf.serialize())
 
     def numLeaves(self):
         return len(self.__leaves)
@@ -42,10 +46,21 @@ class LeafStorage:
         """ Checks if leaf is not registered yet, retrieves leaf configuration.
 
         """
-        # TODO
-        return LeafConfig(name="fakeleaf",host="fakehost", port=12345, maxJobs=0)
+        port = int(leaf['port'])
+        host = leaf['host']
+        for l in self.__leaves:
+            if l.host == host and l.port == port:
+                return None
+        url = 'http://%s:%d/config' % (host, port)
+        resp = None
+        try:
+            resp = urllib.request.urlopen(url)
+            resp = json.loads(resp.read().decode('ascii'))
+        except urllib.error.URLError as e:
+            self.__logger.error('Error getting config for leaf %s:%d' % (host, port))
+            return None
+        return LeafConfig(name=resp['name'],host=host, port=port, maxJobs=resp['maxJobs'])
 
-# Executor is responsible for populating leaf storage
 storage = LeafStorage([])
 
 class LeafIndex(Resource):
@@ -59,3 +74,18 @@ class LeafResource(Resource):
             return {"error": "Leaf with id %d does not exist" % int(leafId)}, 404
         else:
             return leaf.serialize()
+
+class LeafRegister(Resource):
+    def __init__(self):
+        self.__parser = reqparse.RequestParser()
+        self.__parser.add_argument('port',required=True, type=int)
+
+    def post(self):
+        args = self.__parser.parse_args()
+        try:
+            storage.addLeaf({'port':args['port'], 'host':request.remote_addr})
+        # TODO: map different exceptions to return codes
+        except:
+            raise
+            return None, 409
+

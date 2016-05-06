@@ -1,0 +1,30 @@
+.project-list {
+  margin: $gutter * 2 0;
+
+  &__item {
+    display: block;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: $gutter;
+
+    transition: background-color 0.25s;
+    text-decoration: none;
+
+    color: $base-color;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #e3f2fd;
+    }
+
+    &--active {
+      color: #fff;
+      background-color: $base-color;
+
+      &:hover {
+        background-color: $base-color;
+      }
+    }
+  }
+}
